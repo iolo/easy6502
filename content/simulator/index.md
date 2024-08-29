@@ -1,12 +1,8 @@
----
-layout: basic
----
+## Simulator
 
-<h2>Simulator</h2>
+To use the disassembler, click **Assemble**, then **Disassemble**.
 
-To use the disassembler, click **Assemble**, then **Disassemble**. [Back to Easy 6502](index.html).
-
-{% include start.html %}
+```6502
 start:
   jsr init
 
@@ -177,4 +173,4 @@ pixels:
 
 walls:
   dcb $d
-{% include end.html %}
+```

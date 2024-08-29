@@ -2663,8 +2663,11 @@ function SimulatorWidget(node) {
   initialize();
 }
 
-$(document).ready(function () {
-  $('.widget').each(function () {
-    SimulatorWidget(this);
-  });
+document.querySelectorAll('pre > code.language-6502').forEach((el) => {
+  const code = el.innerText;
+  const pre = el.parentNode;
+  const widget = document.querySelector('#simulator-widget-template').content.querySelector('.widget').cloneNode(true);
+  pre.parentNode.replaceChild(widget, pre);
+  widget.querySelector('.code').value = code;
+  SimulatorWidget(widget);
 });

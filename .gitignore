@@ -1,1 +1,4 @@
-_site
+out/
+node_modules/
+.obsidian
+.DS_Store
