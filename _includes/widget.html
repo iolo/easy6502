@@ -1,11 +1,11 @@
 <div class="widget">
   <div class="buttons">
-    <input type="button" value="Assemble" class="assembleButton" />
-    <input type="button" value="Run" class="runButton" />
-    <input type="button" value="Reset" class="resetButton" />
-    <input type="button" value="Hexdump" class="hexdumpButton" />
-    <input type="button" value="Disassemble" class="disassembleButton" />
-    <input type="button" value="Notes" class="notesButton" />
+    <input type="button" value="어셈블" class="assembleButton" />
+    <input type="button" value="실행" class="runButton" />
+    <input type="button" value="초기화" class="resetButton" />
+    <input type="button" value="16진수 덤프" class="hexdumpButton" />
+    <input type="button" value="디스어셈블" class="disassembleButton" />
+    <input type="button" value="참고 사항" class="notesButton" />
   </div>
 
   <textarea class="code"></textarea>
@@ -14,50 +14,50 @@
 
   <div class="debugger">
     <input type="checkbox" class="debug" name="debug" />
-    <label for="debug">Debugger</label>
+    <label for="debug">디버거</label>
     <div class="minidebugger"></div>
     <div class="buttons">
-      <input type="button" value="Step" class="stepButton" />
-      <input type="button" value="Jump to..." class="gotoButton" />
+      <input type="button" value="한 단계 실행" class="stepButton" />
+      <input type="button" value="주소로 이동..." class="gotoButton" />
     </div>
   </div>
 
   <div class="monitorControls">
-    <label for="monitoring">Monitor</label>
+    <label for="monitoring">메모리 모니터</label>
     <input type="checkbox" class="monitoring" name="monitoring" />
 
-    <label for="start">Start: $</label>
+    <label for="start">시작: $</label>
     <input type="text" value="0" class="start" name="start" />
-    <label for="length">Length: $</label>
+    <label for="length">길이: $</label>
     <input type="text" value="ff" class="length" name="length" />
   </div>
 
   <div class="monitor"><pre><code></code></pre></div>
   <div class="messages"><pre><code></code></pre></div>
 
-  <div class="notes" style="display: none">Notes:
+  <div class="notes" style="display: none">참고 사항:
 
-Memory location $fe contains a new random byte on every instruction.
-Memory location $ff contains the ascii code of the last key pressed.
+메모리 위치 $fe에는 명령어가 실행될 때마다 새로운 무작위 바이트가 들어갑니다.
+메모리 위치 $ff에는 마지막으로 누른 키의 ASCII 코드가 들어 있습니다.
 
-Memory locations $200 to $5ff map to the screen pixels. Different values will
-draw different colour pixels. The colours are:
+메모리 위치 $200부터 $5ff까지는 화면의 픽셀에 대응합니다. 저장하는 값에 따라
+서로 다른 색의 픽셀이 그려집니다. 색은 다음과 같습니다.
 
-$0: Black
-$1: White
-$2: Red
-$3: Cyan
-$4: Purple
-$5: Green
-$6: Blue
-$7: Yellow
-$8: Orange
-$9: Brown
-$a: Light red
-$b: Dark grey
-$c: Grey
-$d: Light green
-$e: Light blue
-$f: Light grey
+$0: 검은색
+$1: 흰색
+$2: 빨간색
+$3: 청록색
+$4: 보라색
+$5: 초록색
+$6: 파란색
+$7: 노란색
+$8: 주황색
+$9: 갈색
+$a: 연한 빨간색
+$b: 진한 회색
+$c: 회색
+$d: 연한 초록색
+$e: 연한 파란색
+$f: 연한 회색
     </div>
 </div>

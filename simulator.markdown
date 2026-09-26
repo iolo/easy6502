@@ -2,9 +2,9 @@
 layout: basic
 ---
 
-<h2>Simulator</h2>
+<h2>시뮬레이터</h2>
 
-To use the disassembler, click **Assemble**, then **Disassemble**. [Back to Easy 6502](index.html).
+디스어셈블러를 사용하려면 **어셈블**을 누른 다음 **디스어셈블**을 누르세요. [Easy 6502로 돌아가기](index.html).
 
 {% include start.html %}
 start:

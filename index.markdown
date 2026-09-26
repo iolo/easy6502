@@ -2,53 +2,49 @@
 layout: default
 ---
 
-<h2 id="intro">Introduction</h2>
+<h2 id="intro">소개</h2>
 
-In this tiny ebook I'm going to show you how to get started writing 6502
-assembly language. The 6502 processor was massive in the seventies and
-eighties, powering famous computers like the
+이 짧은 전자책에서는 6502 어셈블리 언어로 프로그래밍을 시작하는 방법을 알려 드리겠습니다.
+6502 프로세서는 1970년대와 1980년대에 큰 인기를 누렸으며,
 [BBC Micro](http://en.wikipedia.org/wiki/BBC_Micro),
 [Atari 2600](http://en.wikipedia.org/wiki/Atari_2600),
 [Commodore 64](http://en.wikipedia.org/wiki/Commodore_64),
-[Apple II](http://en.wikipedia.org/wiki/Apple_II), and the [Nintendo Entertainment
-System](http://en.wikipedia.org/wiki/Nintendo_Entertainment_System). Bender in
-Futurama [has a 6502 processor for a
-brain](http://www.transbyte.org/SID/SID-files/Bender_6502.jpg). [Even the
-Terminator was programmed in
-6502](http://www.pagetable.com/docs/terminator/00-37-23.jpg).
+[Apple II](http://en.wikipedia.org/wiki/Apple_II),
+[Nintendo Entertainment System](http://en.wikipedia.org/wiki/Nintendo_Entertainment_System) 같은
+유명한 컴퓨터와 게임기에 사용되었습니다. 퓨처라마의 벤더도
+[6502 프로세서를 두뇌로 사용합니다](http://www.transbyte.org/SID/SID-files/Bender_6502.jpg).
+[심지어 터미네이터도 6502로 프로그래밍되었습니다](http://www.pagetable.com/docs/terminator/00-37-23.jpg).
 
-So, why would you want to learn 6502? It's a dead language isn't it? Well,
-so's Latin. And they still teach that.
-[Q.E.D.](http://en.wikipedia.org/wiki/Q.E.D.)
+그런데 왜 6502를 배우려는 걸까요? 이미 죽은 언어 아니냐고요? 라틴어도 마찬가지지만
+아직도 가르치잖아요.
+[이로써 증명 끝](http://en.wikipedia.org/wiki/Q.E.D.).
 
-(Actually, I've been reliably informed that 6502 processors are still being
-produced by [Western Design Center](http://www.westerndesigncenter.com/wdc/w65c02s-chip.cfm)
-and [sold to hobbyists](http://www.mouser.co.uk/Search/Refine.aspx?Keyword=65C02), so clearly 6502
-*isn't* a dead language! Who knew?)
+(사실 믿을 만한 소식통에 따르면 [Western Design Center](http://www.westerndesigncenter.com/wdc/w65c02s-chip.cfm)에서
+아직도 6502 프로세서를 생산하고 있으며,
+[취미로 개발하는 사람들에게 판매하고 있다](http://www.mouser.co.uk/Search/Refine.aspx?Keyword=65C02)고 합니다.
+그러니 6502는 분명 죽은 언어가 *아닙니다*! 누가 알았겠어요?)
 
-Seriously though, I think it's valuable to have an understanding of assembly
-language. Assembly language is the lowest level of abstraction in computers -
-the point at which the code is still readable. Assembly language translates
-directly to the bytes that are executed by your computer's processor.
-If you understand how it works, you've basically become a computer
-[magician](http://skilldrick.co.uk/2011/04/magic-in-software-development/).
+농담은 이쯤 하고, 저는 어셈블리 언어를 이해하는 일이 가치 있다고 생각합니다.
+어셈블리 언어는 컴퓨터에서 사람이 코드를 읽을 수 있는 가장 낮은 추상화 수준입니다.
+어셈블리 언어는 컴퓨터의 프로세서가 실행하는 바이트로 직접 변환됩니다.
+그 작동 방식을 이해한다면 사실상 컴퓨터
+[마법사](http://skilldrick.co.uk/2011/04/magic-in-software-development/)가 된 셈입니다.
 
-Then why 6502? Why not a *useful* assembly language, like
-[x86](http://en.wikipedia.org/wiki/X86)? Well, I don't think learning x86 is
-useful. I don't think you'll ever have to *write* assembly language in your day
-job - this is purely an academic exercise, something to expand your mind and
-your thinking. 6502 was originally written in a different age, a time when the majority of
-developers were writing assembly directly, rather than in these new-fangled
-high-level programming languages. So, it was designed to be written by humans.
-More modern assembly languages are meant to written by compilers, so let's
-leave it to them. Plus, 6502 is *fun*. Nobody ever called x86 *fun*.
+그렇다면 왜 하필 6502일까요? [x86](http://en.wikipedia.org/wiki/X86)처럼
+*쓸모 있는* 어셈블리 언어를 배우면 안 될까요? 저는 x86을 배우는 것이 그다지 유용하다고 생각하지 않습니다.
+평소 업무에서 어셈블리 언어를 직접 *작성할* 일은 아마 없을 겁니다.
+이것은 순전히 공부를 위한 연습이자 시야와 사고를 넓히는 활동입니다.
+6502는 지금과는 다른 시대에 만들어졌습니다. 당시에는 개발자 대부분이 요즘의 고급 프로그래밍 언어 대신
+어셈블리 코드를 직접 작성했습니다. 그래서 사람이 직접 쓰기 좋도록 설계되었습니다.
+더 현대적인 어셈블리 언어는 컴파일러가 작성하도록 만들어졌으니, 그 일은 컴파일러에게 맡기도록 하죠.
+게다가 6502는 *재미있습니다*. x86을 *재미있다*고 하는 사람은 없잖아요.
 
 
-<h2 id="first-program">Our first program</h2>
+<h2 id="first-program">첫 번째 프로그램</h2>
 
-So, let's dive in! That thing below is a little [JavaScript 6502 assembler and
-simulator](https://github.com/skilldrick/6502js) that I adapted for this book.
-Click **Assemble** then **Run** to assemble and run the snippet of assembly language.
+이제 시작해 봅시다! 아래에 있는 것은 이 책에 맞게 수정한 작은
+[JavaScript 6502 어셈블러와 시뮬레이터](https://github.com/skilldrick/6502js)입니다.
+**어셈블**을 누른 다음 **실행(Run)**을 눌러 아래 어셈블리 코드를 어셈블하고 실행해 보세요.
 
 {% include start.html %}
 LDA #$01
@@ -59,74 +55,63 @@ LDA #$08
 STA $0202
 {% include end.html %}
 
-Hopefully the black area on the right now has three coloured "pixels" at the
-top left. (If this doesn't work, you'll probably need to upgrade your browser to
-something more modern, like Chrome or Firefox.)
+오른쪽 검은 영역의 왼쪽 위에 색이 있는 "픽셀" 세 개가 나타났을 겁니다.
+(작동하지 않는다면 Chrome이나 Firefox처럼 더 현대적인 브라우저로 업그레이드해야 할 수도 있습니다.)
 
-So, what's this program actually doing? Let's step through it with the
-debugger. Hit **Reset**, then check the **Debugger** checkbox to start the
-debugger. Click **Step** once. If you were watching carefully, you'll have
-noticed that `A=` changed from `$00` to `$01`, and `PC=` changed from `$0600` to
-`$0602`.
+이 프로그램은 실제로 무슨 일을 할까요? 디버거로 한 단계씩 살펴봅시다.
+**초기화**를 누른 다음 **디버거** 체크박스를 선택해 디버거를 켜세요.
+**한 단계 실행**을 한 번 누르세요. 자세히 보고 있었다면 `A=`가 `$00`에서 `$01`로,
+`PC=`가 `$0600`에서 `$0602`로 바뀐 것을 확인했을 겁니다.
 
-Any numbers prefixed with `$` in 6502 assembly language (and by extension, in
-this book) are in hexadecimal (hex) format. If you're not familiar with hex
-numbers, I recommend you read [the Wikipedia
-article](http://en.wikipedia.org/wiki/Hexadecimal). Anything prefixed with `#`
-is a literal number value. Any other number refers to a memory location.
+6502 어셈블리 언어에서, 그리고 이 책에서 `$`로 시작하는 숫자는 모두 16진수입니다.
+16진수가 익숙하지 않다면 [위키백과 문서](http://en.wikipedia.org/wiki/Hexadecimal)를 읽어 보세요.
+`#`로 시작하는 것은 숫자 값 자체를 나타내는 리터럴입니다. 그 밖의 숫자는 메모리 위치를 가리킵니다.
 
-Equipped with that knowledge, you should be able to see that the instruction
-`LDA #$01` loads the hex value `$01` into register `A`. I'll go into more
-detail on registers in the next section.
+이제 `LDA #$01` 명령어가 16진수 값 `$01`을 `A` 레지스터에 불러온다는 것을 알 수 있을 겁니다.
+레지스터는 다음 절에서 더 자세히 설명하겠습니다.
 
-Press **Step** again to execute the second instruction. The top-left pixel of
-the simulator display should now be white. This simulator uses the memory
-locations `$0200` to `$05ff` to draw pixels on its display. The values `$00` to
-`$0f` represent 16 different colours (`$00` is black and `$01` is white), so
-storing the value `$01` at memory location `$0200` draws a white pixel at the
-top left corner. This is simpler than how an actual computer would output
-video, but it'll do for now.
+**한 단계 실행**을 다시 눌러 두 번째 명령어를 실행하세요. 시뮬레이터 화면의 왼쪽 위 픽셀이 흰색으로 바뀔 겁니다.
+이 시뮬레이터는 `$0200`부터 `$05ff`까지의 메모리 위치를 사용해 화면에 픽셀을 그립니다.
+`$00`부터 `$0f`까지의 값은 서로 다른 16가지 색을 나타냅니다(`$00`은 검은색, `$01`은 흰색입니다).
+따라서 메모리 위치 `$0200`에 `$01`을 저장하면 왼쪽 위 모서리에 흰색 픽셀이 그려집니다.
+실제 컴퓨터의 영상 출력 방식보다 단순하지만, 지금은 이 정도면 충분합니다.
 
-So, the instruction `STA $0200` stores the value of the `A` register to memory
-location `$0200`. Click **Step** four more times to execute the rest of the
-instructions, keeping an eye on the `A` register as it changes.
+즉, `STA $0200` 명령어는 `A` 레지스터의 값을 메모리 위치 `$0200`에 저장합니다.
+**한 단계 실행**을 네 번 더 눌러 나머지 명령어를 실행하면서 `A` 레지스터가 어떻게 바뀌는지 살펴보세요.
 
-### Exercises ###
+### 연습 문제 ###
 
-1. Try changing the colour of the three pixels.
-2. Change one of the pixels to draw at the bottom-right corner (memory location `$05ff`).
-3. Add more instructions to draw extra pixels.
+1. 세 픽셀의 색을 바꿔 보세요.
+2. 픽셀 중 하나가 오른쪽 아래 모서리(메모리 위치 `$05ff`)에 그려지도록 바꿔 보세요.
+3. 명령어를 추가해 픽셀을 더 그려 보세요.
 
 
-<h2 id='registers'>Registers and flags</h2>
+<h2 id='registers'>레지스터와 플래그</h2>
 
-We've already had a little look at the processor status section (the bit with
-`A`, `PC` etc.), but what does it all mean?
+앞서 프로세서 상태 표시 영역(`A`, `PC` 등이 있는 부분)을 잠깐 살펴봤습니다.
+각 항목은 무엇을 뜻할까요?
 
-The first line shows the `A`, `X` and `Y` registers (`A` is often called the
-"accumulator"). Each register holds a single byte. Most operations work on the
-contents of these registers.
+첫 번째 줄에는 `A`, `X`, `Y` 레지스터가 표시됩니다(`A`는 흔히 "누산기"라고 부릅니다).
+각 레지스터에는 1바이트가 들어갑니다. 대부분의 연산은 이 레지스터들의 값을 대상으로 수행됩니다.
 
-`SP` is the stack pointer. I won't get into the stack yet, but basically this
-register is decremented every time a byte is pushed onto the stack, and
-incremented when a byte is popped off the stack.
+`SP`는 스택 포인터입니다. 스택은 나중에 자세히 설명하겠지만, 기본적으로 이 레지스터는
+스택에 바이트를 하나 넣을 때마다 감소하고, 스택에서 바이트를 하나 꺼낼 때마다 증가합니다.
 
-`PC` is the program counter - it's how the processor knows at what point in the
-program it currently is. It's like the current line number of an executing
-script. In the JavaScript simulator the code is assembled starting at memory
-location `$0600`, so `PC` always starts there.
+`PC`는 프로그램 카운터입니다. 프로세서는 이 값으로 프로그램의 어느 지점을 실행 중인지 파악합니다.
+실행 중인 스크립트의 현재 줄 번호와 비슷합니다. JavaScript 시뮬레이터에서는
+메모리 위치 `$0600`부터 코드가 어셈블되므로 `PC`도 항상 그 위치에서 시작합니다.
 
-The last section shows the processor flags. Each flag is one bit, so all seven
-flags live in a single byte. The flags are set by the processor to give
-information about the previous instruction. More on that later. [Read more
-about the registers and flags here](https://web.archive.org/web/20210626024532/http://www.obelisk.me.uk/6502/registers.html).
+마지막 영역에는 프로세서 플래그가 표시됩니다. 각 플래그는 1비트이므로 일곱 개의 플래그가 모두
+한 바이트에 들어갑니다. 프로세서는 이전 명령어에 관한 정보를 나타내기 위해 플래그를 설정합니다.
+이에 대해서는 나중에 더 설명하겠습니다.
+[레지스터와 플래그에 대한 자세한 설명은 여기에서 읽을 수 있습니다](https://web.archive.org/web/20210626024532/http://www.obelisk.me.uk/6502/registers.html).
 
 
-<h2 id='instructions'>Instructions</h2>
+<h2 id='instructions'>명령어</h2>
 
-Instructions in assembly language are like a small set of predefined functions.
-All instructions take zero or one arguments. Here's some annotated
-source code to introduce a few different instructions:
+어셈블리 언어의 명령어는 미리 정의된 작은 함수 모음과 비슷합니다.
+모든 명령어는 인수를 받지 않거나 하나만 받습니다.
+몇 가지 명령어를 소개하기 위해 주석을 붙인 소스 코드를 살펴보겠습니다.
 
 {% include start.html %}
 LDA #$c0  ;Load the hex value $c0 into the A register
@@ -136,18 +121,17 @@ ADC #$c4  ;Add the hex value $c4 to the A register
 BRK       ;Break - we're done
 {% include end.html %}
 
-Assemble the code, then turn on the debugger and step through the code, watching
-the `A` and `X` registers. Something slightly odd happens on the line `ADC #$c4`.
-You might expect that adding `$c4` to `$c0` would give `$184`, but this
-processor gives the result as `$84`. What's up with that?
+코드를 어셈블한 다음 디버거를 켜고, `A`와 `X` 레지스터를 지켜보며 한 단계씩 실행해 보세요.
+`ADC #$c4` 줄에서는 조금 이상한 일이 일어납니다.
+`$c4`를 `$c0`에 더하면 `$184`가 될 것 같지만, 이 프로세서에서는 결과가 `$84`로 나옵니다.
+왜 그럴까요?
 
-The problem is, `$184` is too big to fit in a single byte (the max is `$FF`),
-and the registers can only hold a single byte.  It's OK though; the processor
-isn't actually dumb. If you were looking carefully enough, you'll have noticed
-that the carry flag was set to `1` after this operation. So that's how you
-know.
+문제는 `$184`가 한 바이트에 담기에는 너무 큰 값이라는 점입니다(최댓값은 `$FF`입니다).
+레지스터에는 한 바이트만 담을 수 있습니다. 그래도 괜찮습니다. 프로세서가 바보는 아니니까요.
+자세히 봤다면 이 연산 후 캐리 플래그가 `1`로 설정된 것을 확인했을 겁니다.
+이 플래그를 보면 값이 넘쳤다는 것을 알 수 있습니다.
 
-In the simulator below **type** (don't paste) the following code:
+아래 시뮬레이터에 다음 코드를 붙여 넣지 말고 **직접 입력**해 보세요.
 
     LDA #$80
     STA $01
@@ -155,44 +139,40 @@ In the simulator below **type** (don't paste) the following code:
 
 {% include widget.html %}
 
-An important thing to notice here is the distinction between `ADC #$01` and
-`ADC $01`. The first one adds the value `$01` to the `A` register, but the
-second adds the value stored at memory location `$01` to the `A` register.
+여기서는 `ADC #$01`과 `ADC $01`의 차이를 이해하는 것이 중요합니다.
+첫 번째는 값 `$01`을 `A` 레지스터에 더하지만,
+두 번째는 메모리 위치 `$01`에 저장된 값을 `A` 레지스터에 더합니다.
 
-Assemble, check the **Monitor** checkbox, then step through these three
-instructions. The monitor shows a section of memory, and can be helpful to
-visualise the execution of programs. `STA $01` stores the value of the `A`
-register at memory location `$01`, and `ADC $01` adds the value stored at the
-memory location `$01` to the `A` register. `$80 + $80` should equal `$100`, but
-because this is bigger than a byte, the `A` register is set to `$00` and the
-carry flag is set. As well as this though, the zero flag is set. The zero flag
-is set by all instructions where the result is zero.
+어셈블한 다음 **메모리 모니터** 체크박스를 선택하고, 세 명령어를 한 단계씩 실행해 보세요.
+모니터는 메모리의 일부를 보여 주므로 프로그램의 실행 과정을 눈으로 확인하는 데 도움이 됩니다.
+`STA $01`은 `A` 레지스터의 값을 메모리 위치 `$01`에 저장하고,
+`ADC $01`은 메모리 위치 `$01`에 저장된 값을 `A` 레지스터에 더합니다.
+`$80 + $80`은 `$100`이어야 하지만, 한 바이트보다 크기 때문에
+`A` 레지스터는 `$00`이 되고 캐리 플래그가 설정됩니다.
+이와 함께 제로 플래그도 설정됩니다. 결과가 0인 명령어에서는 제로 플래그가 설정됩니다.
 
-A full list of the 6502 instruction set is [available
-here](http://www.6502.org/tutorials/6502opcodes.html) and
-[here](http://www.obelisk.me.uk/6502/reference.html) (I usually refer to
-both pages as they have their strengths and weaknesses). These pages detail the
-arguments to each instruction, which registers they use, and which flags they
-set. They are your bible.
+6502 명령어 집합의 전체 목록은 [이 페이지](http://www.6502.org/tutorials/6502opcodes.html)와
+[이 페이지](http://www.obelisk.me.uk/6502/reference.html)에서 볼 수 있습니다.
+각각 장단점이 있어서 저는 보통 두 페이지를 모두 참고합니다.
+각 명령어의 인수, 사용하는 레지스터, 설정하는 플래그가 자세히 설명되어 있습니다.
+두고두고 참고할 필수 자료입니다.
 
-### Exercises ###
+### 연습 문제 ###
 
-1. You've seen `TAX`. You can probably guess what `TAY`, `TXA` and `TYA` do,
-   but write some code to test your assumptions.
-2. Rewrite the first example in this section to use the `Y` register instead of
-   the `X` register.
-3. The opposite of `ADC` is `SBC` (subtract with carry). Write a program that
-   uses this instruction.
+1. `TAX`를 살펴봤습니다. `TAY`, `TXA`, `TYA`가 무엇을 하는지 짐작할 수 있을 겁니다.
+   코드를 작성해 예상이 맞는지 확인해 보세요.
+2. 이 절의 첫 번째 예제를 `Y` 레지스터를 사용하도록 바꿔 보세요.
+   기존에는 `X` 레지스터를 사용했습니다.
+3. `ADC`의 반대는 `SBC`(캐리를 반영한 뺄셈)입니다. 이 명령어를 사용하는 프로그램을 작성해 보세요.
 
 
-<h2 id='branching'>Branching</h2>
+<h2 id='branching'>분기</h2>
 
-So far we're only able to write basic programs without any branching logic.
-Let's change that.
+지금까지는 분기 로직이 없는 기본적인 프로그램만 작성했습니다.
+이제 분기를 추가해 봅시다.
 
-6502 assembly language has a bunch of branching instructions, all of which
-branch based on whether certain flags are set or not. In this example we'll be
-looking at `BNE`: "Branch on not equal".
+6502 어셈블리 언어에는 여러 분기 명령어가 있으며, 모두 특정 플래그가 설정되었는지에 따라 분기합니다.
+이번 예제에서는 "같지 않으면 분기"를 뜻하는 `BNE`를 살펴보겠습니다.
 
 {% include start.html %}
   LDX #$08
@@ -205,63 +185,56 @@ decrement:
   BRK
 {% include end.html %}
 
-First we load the value `$08` into the `X` register. The next line is a label.
-Labels just mark certain points in a program so we can return to them later.
-After the label we decrement `X`, store it to `$0200` (the top-left pixel), and
-then compare it to the value `$03`.
-[`CPX`](http://www.obelisk.me.uk/6502/reference.html#CPX) compares the
-value in the `X` register with another value. If the two values are equal, the
-`Z` flag is set to `1`, otherwise it is set to `0`.
+먼저 값 `$08`을 `X` 레지스터에 불러옵니다. 다음 줄은 레이블입니다.
+레이블은 나중에 돌아올 수 있도록 프로그램의 특정 지점을 표시하는 역할을 합니다.
+레이블 다음에서는 `X`를 감소시키고 `$0200`(왼쪽 위 픽셀)에 저장한 뒤 값 `$03`과 비교합니다.
+[`CPX`](http://www.obelisk.me.uk/6502/reference.html#CPX)는 `X` 레지스터의 값을 다른 값과 비교합니다.
+두 값이 같으면 `Z` 플래그를 `1`로, 다르면 `0`으로 설정합니다.
 
-The next line, `BNE decrement`, will shift execution to the decrement label if
-the `Z` flag is set to `0` (meaning that the two values in the `CPX` comparison
-were not equal), otherwise it does nothing and we store `X` to `$0201`, then
-finish the program.
+다음 줄의 `BNE decrement`는 `Z` 플래그가 `0`이면
+(즉, `CPX`로 비교한 두 값이 다르면) 실행 위치를 decrement 레이블로 옮깁니다.
+그렇지 않으면 아무 일도 하지 않고 다음으로 넘어가 `X`를 `$0201`에 저장한 뒤 프로그램을 끝냅니다.
 
-In assembly language, you'll usually use labels with branch instructions. When
-assembled though, this label is converted to a single-byte relative offset (a
-number of bytes to go backwards or forwards from the next instruction) so
-branch instructions can only go forward and back around 256 bytes. This means
-they can only be used to move around local code. For moving further you'll need
-to use the jumping instructions.
+어셈블리 언어에서는 보통 분기 명령어에 레이블을 사용합니다.
+하지만 어셈블할 때 이 레이블은 1바이트 상대 오프셋으로 변환됩니다.
+이 값은 다음 명령어를 기준으로 앞이나 뒤로 이동할 바이트 수를 나타내므로,
+분기 명령어로 이동할 수 있는 범위는 앞뒤를 합쳐 약 256바이트입니다.
+따라서 분기는 가까운 코드 사이를 이동할 때만 쓸 수 있습니다.
+더 멀리 이동하려면 점프 명령어가 필요합니다.
 
-### Exercises ###
+### 연습 문제 ###
 
-1. The opposite of `BNE` is `BEQ`. Try writing a program that uses `BEQ`.
-2. `BCC` and `BCS` ("branch on carry clear" and "branch on carry set") are used
-   to branch on the carry flag. Write a program that uses one of these two.
+1. `BNE`의 반대는 `BEQ`입니다. `BEQ`를 사용하는 프로그램을 작성해 보세요.
+2. `BCC`와 `BCS`는 각각 "캐리 플래그가 해제되어 있으면 분기", "캐리 플래그가 설정되어 있으면 분기"를 뜻하며,
+   캐리 플래그에 따라 분기할 때 사용합니다. 둘 중 하나를 사용하는 프로그램을 작성해 보세요.
 
 
-<h2 id='addressing'>Addressing modes</h2>
+<h2 id='addressing'>주소 지정 방식</h2>
 
-The 6502 uses a 16-bit address bus, meaning that there are 65536 bytes of
-memory available to the processor. Remember that a byte is represented by two
-hex characters, so the memory locations are generally represented as `$0000 -
-$ffff`. There are various ways to refer to these memory locations, as detailed below.
+6502는 16비트 주소 버스를 사용하므로 프로세서가 접근할 수 있는 메모리는 65536바이트입니다.
+한 바이트는 16진수 두 자리로 표현되므로 메모리 위치는 보통 `$0000 -
+$ffff`로 표시합니다. 이 메모리 위치를 참조하는 방법은 여러 가지이며, 아래에서 자세히 설명합니다.
 
-With all these examples you might find it helpful to use the memory monitor to
-watch the memory change. The monitor takes a starting memory location and a
-number of bytes to display from that location. Both of these are hex values.
-For example, to display 16 bytes of memory from `$c000`, enter `c000` and `10`
-into **Start** and **Length**, respectively.
+이 예제들을 살펴볼 때 메모리 모니터로 메모리가 바뀌는 모습을 지켜보면 도움이 됩니다.
+모니터에는 시작 메모리 위치와 그 위치부터 표시할 바이트 수를 입력합니다. 두 값 모두 16진수입니다.
+예를 들어 `$c000`부터 16바이트를 표시하려면 **시작**과 **길이**에 각각 `c000`과 `10`을 입력하세요.
 
-### Absolute: `$c000` ###
+### 절대 주소 지정: `$c000` ###
 
-With absolute addressing, the full memory location is used as the argument to the instruction. For example:
+절대 주소 지정에서는 전체 메모리 주소를 명령어의 인수로 사용합니다. 예를 들면 다음과 같습니다.
 
     STA $c000 ;Store the value in the accumulator at memory location $c000
 
-### Zero page: `$c0` ###
+### 제로 페이지 주소 지정: `$c0` ###
 
-All instructions that support absolute addressing (with the exception of the jump
-instructions) also have the option to take a single-byte address. This type of
-addressing is called "zero page" - only the first page (the first 256 bytes) of
-memory is accessible. This is faster, as only one byte needs to be looked up,
-and takes up less space in the assembled code as well.
+절대 주소 지정을 지원하는 모든 명령어는 점프 명령어를 제외하면 1바이트 주소도 사용할 수 있습니다.
+이를 "제로 페이지" 주소 지정이라고 하며, 메모리의 첫 번째 페이지(처음 256바이트)에만 접근할 수 있습니다.
+주소를 읽을 때 한 바이트만 필요하므로 더 빠르고, 어셈블된 코드의 크기도 줄어듭니다.
 
-### Zero page,X: `$c0,X` ###
+### 제로 페이지,X 주소 지정: `$c0,X` ###
 
-This is where addressing gets interesting. In this mode, a zero page address is given, and then the value of the `X` register is added. Here is an example:
+여기서부터 주소 지정이 흥미로워집니다. 이 방식에서는 주어진 제로 페이지 주소에 `X` 레지스터의 값을 더합니다.
+다음 예제를 보세요.
 
     LDX #$01   ;X is $01
     LDA #$aa   ;A is $aa
@@ -269,38 +242,36 @@ This is where addressing gets interesting. In this mode, a zero page address is 
     INX        ;Increment X
     STA $a0,X ;Store the value of A at memory location $a2
 
-If the result of the addition is larger than a single byte, the address wraps around. For example:
+더한 결과가 한 바이트의 범위를 넘으면 주소가 처음으로 돌아갑니다. 예를 들면 다음과 같습니다.
 
     LDX #$05
     STA $ff,X ;Store the value of A at memory location $04
 
-### Zero page,Y: `$c0,Y` ###
+### 제로 페이지,Y 주소 지정: `$c0,Y` ###
 
-This is the equivalent of zero page,X, but can only be used with `LDX` and `STX`.
+제로 페이지,X와 같은 방식이지만, `LDX`와 `STX`에서만 사용할 수 있습니다.
 
-### Absolute,X and absolute,Y: `$c000,X` and `$c000,Y` ###
+### 절대,X 및 절대,Y 주소 지정: `$c000,X` 및 `$c000,Y` ###
 
-These are the absolute addressing versions of zero page,X and zero page,Y. For example:
+제로 페이지,X와 제로 페이지,Y를 절대 주소에 적용한 방식입니다. 예를 들면 다음과 같습니다.
 
     LDX #$01
     STA $0200,X ;Store the value of A at memory location $0201
 
-Unlike zero page,Y, absolute,Y can't be used with `STX` but can be used with `LDA` and `STA`.
+제로 페이지,Y와 달리 절대,Y는 `STX`에서 사용할 수 없지만, `LDA`와 `STA`에서는 사용할 수 있습니다.
 
-### Immediate: `#$c0` ###
+### 즉시 주소 지정: `#$c0` ###
 
-Immediate addressing doesn't strictly deal with memory addresses - this is the
-mode where actual values are used. For example, `LDX #$01` loads the value
-`$01` into the `X` register. This is very different to the zero page
-instruction `LDX $01` which loads the value at memory location `$01` into the
-`X` register.
+엄밀히 말해 즉시 주소 지정은 메모리 주소를 다루지 않습니다. 실제 값 자체를 사용하는 방식입니다.
+예를 들어 `LDX #$01`은 값 `$01`을 `X` 레지스터에 불러옵니다.
+이는 메모리 위치 `$01`에 저장된 값을 `X` 레지스터에 불러오는 제로 페이지 명령어 `LDX $01`과는 완전히 다릅니다.
 
-### Relative: `$c0` (or label) ###
+### 상대 주소 지정: `$c0`(또는 레이블) ###
 
-Relative addressing is used for branching instructions. These instructions take
-a single byte, which is used as an offset from the following instruction.
+상대 주소 지정은 분기 명령어에 사용됩니다. 이 명령어들은 1바이트 인수를 받으며,
+이 값은 다음 명령어를 기준으로 한 오프셋으로 사용됩니다.
 
-Assemble the following code, then click the **Hexdump** button to see the assembled code.
+다음 코드를 어셈블한 뒤 **16진수 덤프** 버튼을 눌러 어셈블된 코드를 확인해 보세요.
 
 {% include start.html %}
   LDA #$01
@@ -311,31 +282,28 @@ notequal:
   BRK
 {% include end.html %}
 
-The hex should look something like this:
+다음과 같은 16진수 값이 표시될 겁니다.
 
     a9 01 c9 02 d0 02 85 22 00
 
-`a9` and `c9` are the processor opcodes for immediate-addressed `LDA` and `CMP`
-respectively. `01` and `02` are the arguments to these instructions. `d0` is
-the opcode for `BNE`, and its argument is `02`. This means "skip over the next
-two bytes" (`85 22`, the assembled version of `STA $22`). Try editing the code
-so `STA` takes a two-byte absolute address rather than a single-byte zero page
-address (e.g. change `STA $22` to `STA $2222`). Reassemble the code and look at
-the hexdump again - the argument to `BNE` should now be `03`, because the
-instruction the processor is skipping past is now three bytes long.
+`a9`와 `c9`는 각각 즉시 주소 지정 방식의 `LDA`와 `CMP`에 해당하는 프로세서 연산 코드입니다.
+`01`과 `02`는 이 명령어들의 인수입니다. `d0`는 `BNE`의 연산 코드이며 인수는 `02`입니다.
+이는 "다음 두 바이트를 건너뛰라"는 뜻입니다(`85 22`는 `STA $22`를 어셈블한 결과입니다).
+`STA`가 1바이트 제로 페이지 주소 대신 2바이트 절대 주소를 사용하도록 코드를 수정해 보세요.
+예를 들어 `STA $22`를 `STA $2222`로 바꿉니다.
+다시 어셈블한 뒤 16진수 덤프를 보면 `BNE`의 인수가 `03`으로 바뀌었을 겁니다.
+프로세서가 건너뛰는 명령어의 길이가 이제 3바이트이기 때문입니다.
 
-### Implicit ###
+### 암시적 주소 지정 ###
 
-Some instructions don't deal with memory locations (e.g. `INX` - increment the
-`X` register). These are said to have implicit addressing - the argument is
-implied by the instruction.
+메모리 위치를 다루지 않는 명령어도 있습니다(예를 들어 `INX`는 `X` 레지스터를 증가시킵니다).
+이를 암시적 주소 지정이라고 하며, 명령어 자체에 인수가 내포되어 있습니다.
 
-### Indirect: `($c000)` ###
+### 간접 주소 지정: `($c000)` ###
 
-Indirect addressing uses an absolute address to look up another address. The
-first address gives the least significant byte of the address, and the
-following byte gives the most significant byte. That can be hard to wrap your
-head around, so here's an example:
+간접 주소 지정에서는 절대 주소를 이용해 다른 주소를 읽어 옵니다.
+첫 번째 주소에는 대상 주소의 하위 바이트가, 그다음 바이트에는 상위 바이트가 들어 있습니다.
+바로 이해하기는 어려울 수 있으니 예제를 보겠습니다.
 
 {% include start.html %}
 LDA #$01
@@ -345,18 +313,17 @@ STA $f1
 JMP ($00f0) ;dereferences to $cc01
 {% include end.html %}
 
-In this example, `$f0` contains the value `$01` and `$f1` contains the value
-`$cc`. The instruction `JMP ($f0)` causes the processor to look up the two
-bytes at `$f0` and `$f1` (`$01` and `$cc`) and put them together to form the
-address `$cc01`, which becomes the new program counter. Assemble and step
-through the program above to see what happens. I'll talk more about `JMP` in
-the section on [Jumping](#jumping).
+이 예제에서 `$f0`에는 값 `$01`이, `$f1`에는 값 `$cc`가 들어 있습니다.
+`JMP ($f0)` 명령어는 프로세서가 `$f0`와 `$f1`의 두 바이트(`$01`과 `$cc`)를 읽어
+주소 `$cc01`로 조합하고, 이를 새 프로그램 카운터로 사용하게 합니다.
+위 프로그램을 어셈블하고 한 단계씩 실행해 어떤 일이 일어나는지 확인해 보세요.
+`JMP`는 [점프](#jumping) 절에서 더 자세히 설명하겠습니다.
 
-### Indexed indirect: `($c0,X)` ###
+### 인덱스 간접 주소 지정: `($c0,X)` ###
 
-This one's kinda weird. It's like a cross between zero page,X and indirect.
-Basically, you take the zero page address, add the value of the `X` register to
-it, then use that to look up a two-byte address. For example:
+이 방식은 조금 특이합니다. 제로 페이지,X와 간접 주소 지정을 섞은 것과 같습니다.
+제로 페이지 주소에 `X` 레지스터의 값을 더한 다음, 그 위치에서 2바이트 주소를 읽어 옵니다.
+예를 들면 다음과 같습니다.
 
 {% include start.html %}
 LDX #$01
@@ -369,21 +336,19 @@ STY $0705
 LDA ($00,X)
 {% include end.html %}
 
-Memory locations `$01` and `$02` contain the values `$05` and `$07`
-respectively. Think of `($00,X)` as `($00 + X)`. In this case `X` is `$01`, so
-this simplifies to `($01)`. From here things proceed like standard indirect
-addressing - the two bytes at `$01` and `$02` (`$05` and `$07`) are looked up
-to form the address `$0705`.  This is the address that the `Y` register was
-stored into in the previous instruction, so the `A` register gets the same
-value as `Y`, albeit through a much more circuitous route. You won't see this
-much.
+메모리 위치 `$01`과 `$02`에는 각각 값 `$05`와 `$07`이 들어 있습니다.
+`($00,X)`를 `($00 + X)`라고 생각해 보세요. 이 경우 `X`는 `$01`이므로 `($01)`이 됩니다.
+여기서부터는 일반적인 간접 주소 지정과 같습니다. `$01`과 `$02`에 있는 두 바이트(`$05`와 `$07`)를
+읽어서 주소 `$0705`를 만듭니다. 이 주소는 앞의 명령어에서 `Y` 레지스터의 값을 저장한 곳이므로,
+훨씬 복잡한 경로를 거치기는 해도 결국 `A` 레지스터에는 `Y`와 같은 값이 들어갑니다.
+자주 보게 될 방식은 아닙니다.
 
 
-### Indirect indexed: `($c0),Y` ###
+### 간접 인덱스 주소 지정: `($c0),Y` ###
 
-Indirect indexed is like indexed indirect but less insane. Instead of adding
-the `X` register to the address *before* dereferencing, the zero page address
-is dereferenced, and the `Y` register is added to the resulting address.
+간접 인덱스 주소 지정은 인덱스 간접 주소 지정과 비슷하지만 덜 복잡합니다.
+주소를 역참조하기 *전에* `X` 레지스터를 더하는 대신,
+제로 페이지 주소를 역참조한 결과에 `Y` 레지스터의 값을 더합니다.
 
 {% include start.html %}
 LDY #$01
@@ -396,27 +361,26 @@ STX $0704
 LDA ($01),Y
 {% include end.html %}
 
-In this case, `($01)` looks up the two bytes at `$01` and `$02`: `$03` and
-`$07`. These form the address `$0703`. The value of the `Y` register is added
-to this address to give the final address `$0704`.
+이 경우 `($01)`은 `$01`과 `$02`에 있는 두 바이트, 즉 `$03`과 `$07`을 읽습니다.
+두 값으로 주소 `$0703`을 만듭니다. 이 주소에 `Y` 레지스터의 값을 더하면 최종 주소 `$0704`가 됩니다.
 
-### Exercise ###
+### 연습 문제 ###
 
-1. Try to write code snippets that use each of the 6502 addressing modes.
-   Remember, you can use the monitor to watch a section of memory.
+1. 6502의 각 주소 지정 방식을 사용하는 짧은 코드를 작성해 보세요.
+   모니터로 메모리의 일부를 살펴볼 수 있다는 점을 기억하세요.
 
 
-<h2 id='stack'>The stack</h2>
+<h2 id='stack'>스택</h2>
 
-The stack in a 6502 processor is just like any other stack - values are pushed
-onto it and popped ("pulled" in 6502 parlance) off it. The current depth of the
-stack is measured by the stack pointer, a special register. The stack lives in
-memory between `$0100` and `$01ff`. The stack pointer is initially `$ff`, which
-points to memory location `$01ff`. When a byte is pushed onto the stack, the
-stack pointer becomes `$fe`, or memory location `$01fe`, and so on.
+6502 프로세서의 스택도 다른 스택과 같습니다. 값을 넣고(push) 꺼냅니다(pop, 6502에서는 "pull"이라고 부릅니다).
+스택의 현재 깊이는 스택 포인터라는 특수 레지스터로 나타냅니다.
+스택은 메모리의 `$0100`부터 `$01ff` 사이에 있습니다.
+스택 포인터의 초깃값은 `$ff`이며, 메모리 위치 `$01ff`를 가리킵니다.
+스택에 바이트를 하나 넣으면 스택 포인터는 `$fe`가 되어 메모리 위치 `$01fe`를 가리킵니다.
+이후에도 같은 방식으로 변합니다.
 
-Two of the stack instructions are `PHA` and `PLA`, "push accumulator" and "pull
-accumulator". Below is an example of these two in action.
+스택 명령어 중에는 `PHA`와 `PLA`가 있습니다. 각각 "누산기를 스택에 넣기"와 "스택에서 꺼내 누산기에 담기"를 뜻합니다.
+아래는 두 명령어를 사용하는 예제입니다.
 
 {% include start.html %}
   LDX #$00
@@ -437,25 +401,23 @@ secondloop:
   BNE secondloop
 {% include end.html %}
 
-`X` holds the pixel colour, and `Y` holds the position of the current pixel.
-The first loop draws the current colour as a pixel (via the `A` register),
-pushes the colour to the stack, then increments the colour and position.  The
-second loop pops the stack, draws the popped colour as a pixel, then increments
-the position. As should be expected, this creates a mirrored pattern.
+`X`에는 픽셀의 색이, `Y`에는 현재 픽셀의 위치가 들어 있습니다.
+첫 번째 루프에서는 `A` 레지스터를 통해 현재 색의 픽셀을 그리고, 그 색을 스택에 넣은 뒤 색과 위치를 증가시킵니다.
+두 번째 루프에서는 스택에서 색을 꺼내 그 색으로 픽셀을 그리고 위치를 증가시킵니다.
+예상대로 거울에 비친 듯한 대칭 무늬가 만들어집니다.
 
 
-<h2 id='jumping'>Jumping</h2>
+<h2 id='jumping'>점프</h2>
 
-Jumping is like branching with two main differences. First, jumps are not
-conditionally executed, and second, they take a two-byte absolute address. For
-small programs, this second detail isn't very important, as you'll mostly be
-using labels, and the assembler works out the correct memory location from the
-label. For larger programs though, jumping is the only way to move from one
-section of the code to another.
+점프는 분기와 비슷하지만 두 가지 큰 차이가 있습니다.
+첫째, 조건 없이 실행됩니다. 둘째, 2바이트 절대 주소를 사용합니다.
+작은 프로그램에서는 주로 레이블을 사용하고 어셈블러가 레이블에 해당하는 정확한 메모리 위치를 계산하므로,
+두 번째 차이는 그다지 중요하지 않습니다.
+하지만 큰 프로그램에서는 코드의 한 영역에서 다른 영역으로 이동하려면 점프가 필요합니다.
 
 ### JMP ###
 
-`JMP` is an unconditional jump. Here's a really simple example to show it in action:
+`JMP`는 무조건 점프입니다. 작동 방식을 보여 주는 아주 간단한 예제를 보겠습니다.
 
 {% include start.html %}
   LDA #$03
@@ -470,15 +432,14 @@ there:
 
 ### JSR/RTS ###
 
-`JSR` and `RTS` ("jump to subroutine" and "return from subroutine") are a
-dynamic duo that you'll usually see used together. `JSR` is used to jump from
-the current location to another part of the code. `RTS` returns to the previous
-position. This is basically like calling a function and returning.
+`JSR`과 `RTS`는 각각 "서브루틴으로 점프"와 "서브루틴에서 복귀"를 뜻하며, 보통 함께 사용되는 단짝입니다.
+`JSR`은 현재 위치에서 코드의 다른 부분으로 점프할 때 사용합니다.
+`RTS`는 이전 위치로 돌아옵니다. 기본적으로 함수를 호출하고 반환하는 것과 같습니다.
 
-The processor knows where to return to because `JSR` pushes the address minus
-one of the next instruction onto the stack before jumping to the given
-location. `RTS` pops this location, adds one to it, and jumps to that location.
-An example:
+프로세서가 돌아올 위치를 아는 이유는 `JSR`이 지정된 위치로 점프하기 전에
+다음 명령어의 주소에서 1을 뺀 값을 스택에 넣기 때문입니다.
+`RTS`는 이 주소를 스택에서 꺼내 1을 더한 뒤 해당 위치로 점프합니다.
+다음 예제를 보세요.
 
 {% include start.html %}
   JSR init
@@ -499,32 +460,29 @@ end:
   BRK
 {% include end.html %}
 
-The first instruction causes execution to jump to the `init` label. This sets
-`X`, then returns to the next instruction, `JSR loop`. This jumps to the `loop`
-label, which increments `X` until it is equal to `$05`. After that we return to
-the next instruction, `JSR end`, which jumps to the end of the file. This
-illustrates how `JSR` and `RTS` can be used together to create modular code.
+첫 번째 명령어는 실행 위치를 `init` 레이블로 옮깁니다.
+여기서 `X`를 설정하고 다음 명령어인 `JSR loop`로 돌아옵니다.
+이 명령어는 `loop` 레이블로 점프하고, 그곳에서는 `X`가 `$05`가 될 때까지 증가시킵니다.
+그다음 명령어인 `JSR end`로 돌아와 파일의 끝으로 점프합니다.
+이 예제는 `JSR`과 `RTS`를 함께 사용해 코드를 모듈화하는 방법을 보여 줍니다.
 
 
-<h2 id='snake'>Creating a game</h2>
+<h2 id='snake'>게임 만들기</h2>
 
-Now, let's put all this knowledge to good use, and make a game! We're going to
-be making a really simple version of the classic game 'Snake'.
+이제 배운 내용을 활용해 게임을 만들어 봅시다!
+고전 게임 '스네이크'의 아주 간단한 버전을 만들겠습니다.
 
-Even though this will be a simple version, the code will be substantially larger
-than all the previous examples. We will need to keep track of several memory
-locations together for the various aspects of the game. We can still do
-the necessary bookkeeping throughout the program ourselves, as before, but
-on a larger scale that quickly becomes tedious and can also lead to bugs that
-are difficult to spot. Instead we'll now let the assembler do some of the
-mundane work for us.
+간단한 버전이기는 하지만, 코드는 지금까지의 예제보다 훨씬 길어집니다.
+게임의 여러 요소를 다루려면 여러 메모리 위치를 함께 관리해야 합니다.
+이전처럼 프로그램 전체에서 필요한 주소를 직접 관리할 수도 있지만,
+규모가 커지면 금세 번거로워지고 찾기 어려운 버그가 생길 수도 있습니다.
+이제 이런 단순한 작업의 일부는 어셈블러에게 맡기겠습니다.
 
-In this assembler, we can define descriptive constants (or symbols) that represent
-numbers. The rest of the code can then simply use the constants instead of the
-literal number, which immediately makes it obvious what we're dealing with.
-You can use letters, digits and underscores in a name.
+이 어셈블러에서는 숫자를 나타내는 상수(또는 심볼)에 의미 있는 이름을 붙일 수 있습니다.
+나머지 코드에서는 숫자 리터럴 대신 그 상수를 사용하면 되므로, 어떤 값을 다루는지 바로 알 수 있습니다.
+이름에는 영문자, 숫자, 밑줄을 사용할 수 있습니다.
 
-Here's an example. Note that immediate operands are still prefixed with a `#`.
+다음 예제를 보세요. 즉시 피연산자에는 여전히 앞에 `#`를 붙여야 합니다.
 {% include start.html %}
   define  sysRandom  $fe ; an address
   define  a_dozen    $0c ; a constant
@@ -534,29 +492,27 @@ Here's an example. Note that immediate operands are still prefixed with a `#`.
   LDX #a_dozen   ; equivalent to "LDX #$0c"
 {% include end.html %}
 
-The simulator widget below contains the entire source code of the game. I'll
-explain how it works in the following sections.
+아래 시뮬레이터 위젯에는 게임의 전체 소스 코드가 들어 있습니다.
+다음 절부터 작동 방식을 설명하겠습니다.
 
-[Willem van der Jagt](https://twitter.com/wkjagt) made a [fully annotated gist
-of this source code](https://gist.github.com/wkjagt/9043907), so follow along
-with that for more details.
+[Willem van der Jagt](https://twitter.com/wkjagt)가
+[이 소스 코드에 자세한 주석을 붙인 gist](https://gist.github.com/wkjagt/9043907)를 작성했습니다.
+더 자세히 알고 싶다면 함께 참고하세요.
 
 {% include snake.html %}
 
 
-### Overall structure ###
+### 전체 구조 ###
 
-After the initial block of comments (lines starting with semicolons), the first
-two lines are:
+맨 앞의 주석 블록(세미콜론으로 시작하는 줄들) 다음에 나오는 첫 두 줄은 다음과 같습니다.
 
     jsr init
     jsr loop
 
-`init` and `loop` are both subroutines. `init` initializes the game state, and
-`loop` is the main game loop.
+`init`과 `loop`는 모두 서브루틴입니다. `init`은 게임 상태를 초기화하고,
+`loop`는 게임의 메인 루프입니다.
 
-The `loop` subroutine itself just calls a number of subroutines sequentially,
-before looping back on itself:
+`loop` 서브루틴은 여러 서브루틴을 차례로 호출한 다음, 다시 처음으로 돌아가 반복합니다.
 
     loop:
       jsr readkeys
@@ -567,45 +523,40 @@ before looping back on itself:
       jsr spinwheels
       jmp loop
 
-First, `readkeys` checks to see if one of the direction keys (W, A, S, D) was
-pressed, and if so, sets the direction of the snake accordingly. Then,
-`checkCollision` checks to see if the snake collided with itself or the apple.
-`updateSnake` updates the internal representation of the snake, based on its
-direction. Next, the apple and snake are drawn. Finally, `spinWheels` makes the
-processor do some busy work, to stop the game from running too quickly. Think
-of it like a sleep command. The game keeps running until the snake collides
-with the wall or itself.
+먼저 `readkeys`는 방향 키(W, A, S, D) 중 하나가 눌렸는지 확인하고,
+눌렸다면 그에 맞게 뱀의 방향을 설정합니다.
+다음으로 `checkCollision`은 뱀이 자기 몸이나 사과에 닿았는지 확인합니다.
+`updateSnake`는 방향에 따라 내부에 저장된 뱀의 상태를 갱신합니다.
+그다음 사과와 뱀을 그립니다. 마지막으로 `spinWheels`는 게임이 너무 빨리 실행되지 않도록
+프로세서가 시간을 소모하게 합니다. 잠시 기다리는 sleep 명령과 비슷하다고 생각하면 됩니다.
+게임은 뱀이 벽이나 자기 몸에 부딪힐 때까지 계속됩니다.
 
 
-### Zero page usage ###
+### 제로 페이지 활용 ###
 
-The zero page of memory is used to store a number of game state variables, as
-noted in the comment block at the top of the game. Everything in `$00`, `$01`
-and `$10` upwards is a pair of bytes representing a two-byte memory location
-that will be looked up using indirect addressing.  These memory locations will
-all be between `$0200` and `$05ff` - the section of memory corresponding to the
-simulator display. For example, if `$00` and `$01` contained the values `$01`
-and `$02`, they would be referring to the second pixel of the display (
-`$0201` - remember, the least significant byte comes first in indirect addressing).
+게임 코드 맨 위의 주석 블록에서 설명하듯, 메모리의 제로 페이지에는 여러 게임 상태 변수를 저장합니다.
+`$00`, `$01`과 `$10` 이후의 값들은 두 바이트씩 짝을 이루며,
+간접 주소 지정으로 참조할 2바이트 메모리 주소를 나타냅니다.
+이 주소는 모두 시뮬레이터 화면에 해당하는 메모리 영역인 `$0200`부터 `$05ff` 사이에 있습니다.
+예를 들어 `$00`과 `$01`에 각각 `$01`과 `$02`가 들어 있다면,
+화면의 두 번째 픽셀을 가리킵니다(`$0201`입니다. 간접 주소 지정에서는 하위 바이트가 먼저 온다는 점을 기억하세요).
 
-The first two bytes hold the location of the apple. This is updated every time
-the snake eats the apple. Byte `$02` contains the current direction. `1` means
-up, `2` right, `4` down, and `8` left.  The reasoning behind these numbers will
-become clear later.
+처음 두 바이트에는 사과의 위치가 들어 있습니다. 뱀이 사과를 먹을 때마다 이 값이 갱신됩니다.
+`$02` 바이트에는 현재 방향이 들어 있습니다. `1`은 위, `2`는 오른쪽, `4`는 아래, `8`은 왼쪽입니다.
+이 숫자들을 사용하는 이유는 나중에 알게 될 겁니다.
 
-Finally, byte `$03` contains the current length of the snake, in terms of bytes
-in memory (so a length of 4 means 2 pixels).
+마지막으로 `$03` 바이트에는 뱀의 현재 길이가 메모리상의 바이트 수로 저장됩니다.
+따라서 길이가 4이면 2픽셀을 뜻합니다.
 
 
-### Initialization ###
+### 초기화 ###
 
-The `init` subroutine defers to two subroutines, `initSnake` and
-`generateApplePosition`. `initSnake` sets the snake direction, length, and then
-loads the initial memory locations of the snake head and body. The byte pair at
-`$10` contains the screen location of the head, the pair at `$12` contains the
-location of the single body segment, and `$14` contains the location of the
-tail (the tail is the last segment of the body and is drawn in black to keep
-the snake moving). This happens in the following code:
+`init` 서브루틴은 `initSnake`와 `generateApplePosition`이라는 두 서브루틴에 작업을 맡깁니다.
+`initSnake`는 뱀의 방향과 길이를 설정한 뒤 머리와 몸통의 초기 메모리 위치를 저장합니다.
+`$10`의 바이트 쌍에는 머리의 화면 위치가, `$12`의 바이트 쌍에는 몸통 한 마디의 위치가,
+`$14`에는 꼬리의 위치가 들어 있습니다.
+꼬리는 몸통의 마지막 마디이며, 뱀이 움직이도록 검은색으로 그립니다.
+이를 처리하는 코드는 다음과 같습니다.
 
     lda #$11
     sta $10
@@ -618,164 +569,147 @@ the snake moving). This happens in the following code:
     sta $13
     sta $15
 
-This loads the value `$11` into the memory location `$10`, the value `$10` into
-`$12`, and `$0f` into `$14`. It then loads the value `$04` into `$11`, `$13`
-and `$15`. This leads to memory like this:
+이 코드는 메모리 위치 `$10`에 값 `$11`을, `$12`에 값 `$10`을, `$14`에 `$0f`를 저장합니다.
+그다음 `$11`, `$13`, `$15`에 값 `$04`를 저장합니다. 그 결과 메모리는 다음과 같은 상태가 됩니다.
 
     0010: 11 04 10 04 0f 04
 
-which represents the indirectly-addressed memory locations `$0411`, `$0410` and
-`$040f` (three pixels in the middle of the display). I'm labouring this point,
-but it's important to fully grok how indirect addressing works.
+이는 간접 주소 지정으로 참조하는 메모리 위치 `$0411`, `$0410`, `$040f`를 나타냅니다.
+화면 가운데의 픽셀 세 개에 해당합니다.
+거듭 설명하는 이유는 간접 주소 지정의 작동 방식을 확실히 이해하는 것이 중요하기 때문입니다.
 
-The next subroutine, `generateApplePosition`, sets the apple location to a
-random position on the display. First, it loads a random byte into the
-accumulator (`$fe` is a random number generator in this simulator). This is
-stored into `$00`. Next, a different random byte is loaded into the
-accumulator, which is then `AND`-ed with the value `$03`. This part requires a
-bit of a detour.
+다음 서브루틴인 `generateApplePosition`은 사과의 위치를 화면의 임의 지점으로 설정합니다.
+먼저 무작위 바이트를 누산기에 불러옵니다(이 시뮬레이터에서 `$fe`는 난수 생성기입니다).
+이 값을 `$00`에 저장합니다. 다음으로 다른 무작위 바이트를 누산기에 불러온 뒤,
+값 `$03`과 `AND` 연산을 합니다. 이 부분은 잠깐 다른 설명이 필요합니다.
 
-The hex value `$03` is represented in binary as `00000011`. The `AND` opcode
-performs a bitwise AND of the argument with the accumulator. For example, if
-the accumulator contains the binary value `10101010`, then the result of `AND`
-with `00000011` will be `00000010`.
+16진수 값 `$03`을 2진수로 표현하면 `00000011`입니다.
+`AND` 연산 코드는 인수와 누산기 사이에 비트 단위 AND 연산을 수행합니다.
+예를 들어 누산기에 2진수 값 `10101010`이 들어 있다면,
+`00000011`과 `AND` 연산을 한 결과는 `00000010`이 됩니다.
 
-The effect of this is to mask out the least significant two bits of the
-accumulator, setting the others to zero. This converts a number in the range of
-0&ndash;255 to a number in the range of 0&ndash;3.
+이렇게 하면 누산기의 하위 두 비트만 남기고 나머지 비트를 모두 0으로 만드는 마스킹 효과가 생깁니다.
+즉, 0&ndash;255 범위의 수를 0&ndash;3 범위의 수로 바꿉니다.
 
-After this, the value `2` is added to the accumulator, to create a final random
-number in the range 2&ndash;5.
+그다음 누산기에 값 `2`를 더하면 최종적으로 2&ndash;5 범위의 난수가 만들어집니다.
 
-The result of this subroutine is to load a random byte into `$00`, and a random
-number between 2 and 5 into `$01`. Because the least significant byte comes
-first with indirect addressing, this translates into a memory address between
-`$0200` and `$05ff`: the exact range used to draw the display.
+이 서브루틴을 실행하면 `$00`에는 무작위 바이트가, `$01`에는 2부터 5 사이의 난수가 들어갑니다.
+간접 주소 지정에서는 하위 바이트가 먼저 오므로,
+이 두 값은 `$0200`부터 `$05ff` 사이의 메모리 주소가 됩니다.
+화면을 그리는 데 사용하는 범위와 정확히 일치합니다.
 
 
-### The game loop ###
+### 게임 루프 ###
 
-Nearly all games have at their heart a game loop. All game loops have the same
-basic form: accept user input, update the game state, and render the game
-state. This loop is no different.
-
-
-#### Reading the input ####
-
-The first subroutine, `readKeys`, takes the job of accepting user input. The
-memory location `$ff` holds the ascii code of the most recent key press in this
-simulator. The value is loaded into the accumulator, then compared to `$77`
-(the hex code for W), `$64` (D), `$73` (S) and `$61` (A). If any of these
-comparisons are successful, the program branches to the appropriate section.
-Each section (`upKey`, `rightKey`, etc.) first checks to see if the current
-direction is the opposite of the new direction. This requires another little detour.
-
-As stated before, the four directions are represented internally by the numbers
-1, 2, 4 and 8. Each of these numbers is a power of 2, thus they are represented
-by a binary number with a single `1`:
-
-    1 => 0001 (up)
-    2 => 0010 (right)
-    4 => 0100 (down)
-    8 => 1000 (left)
-
-The `BIT` opcode is similar to `AND`, but the calculation is only used to set
-the zero flag - the actual result is discarded. The zero flag is set only if the
-result of AND-ing the accumulator with argument is zero. When we're looking at
-powers of two, the zero flag will only be set if the two numbers are not the
-same. For example, `0001 AND 0001` is not zero, but `0001 AND 0010` is zero.
-
-So, looking at `upKey`, if the current direction is down (4), the bit test will
-be zero. `BNE` means "branch if the zero flag is clear", so in this case we'll
-branch to `illegalMove`, which just returns from the subroutine. Otherwise, the
-new direction (1 in this case) is stored in the appropriate memory location.
+거의 모든 게임의 중심에는 게임 루프가 있습니다. 게임 루프의 기본 형태는 모두 같습니다.
+사용자 입력을 받고, 게임 상태를 갱신하고, 게임 상태를 화면에 그립니다. 이 루프도 마찬가지입니다.
 
 
-#### Updating the game state ####
+#### 입력 읽기 ####
 
-The next subroutine, `checkCollision`, defers to `checkAppleCollision` and
-`checkSnakeCollision`. `checkAppleCollision` just checks to see if the two
-bytes holding the location of the apple match the two bytes holding the
-location of the head. If they do, the length is increased and a new apple
-position is generated.
+첫 번째 서브루틴인 `readKeys`는 사용자 입력을 받습니다.
+이 시뮬레이터에서는 메모리 위치 `$ff`에 가장 최근에 누른 키의 ASCII 코드가 들어 있습니다.
+그 값을 누산기에 불러온 뒤 `$77`(W 키의 16진수 코드), `$64`(D), `$73`(S), `$61`(A)과 비교합니다.
+일치하는 값이 있으면 해당 부분으로 분기합니다.
+각 부분(`upKey`, `rightKey` 등)에서는 먼저 현재 방향과 새 방향이 정반대인지 확인합니다.
+이를 이해하려면 잠깐 다른 설명이 필요합니다.
 
-`checkSnakeCollision` loops through the snake's body segments, checking each
-byte pair against the head pair. If there is a match, then game over.
+앞서 설명했듯이 네 방향은 내부적으로 숫자 1, 2, 4, 8로 표현합니다.
+각 숫자는 2의 거듭제곱이므로 2진수로 표현하면 `1`이 하나만 있습니다.
 
-After collision detection, we update the snake's location. This is done at a
-high level like so: First, move each byte pair of the body up one position in
-memory. Second, update the head according to the current direction. Finally, if
-the head is out of bounds, handle it as a collision. I'll illustrate this with
-some ascii art. Each pair of brackets contains an x,y coordinate rather than a
-pair of bytes for simplicity.
+    1 => 0001 (위)
+    2 => 0010 (오른쪽)
+    4 => 0100 (아래)
+    8 => 1000 (왼쪽)
+
+`BIT` 연산 코드는 `AND`와 비슷하지만, 계산 결과는 제로 플래그를 설정하는 데만 사용하고 버립니다.
+누산기와 인수의 AND 연산 결과가 0일 때만 제로 플래그가 설정됩니다.
+2의 거듭제곱끼리 비교하는 경우에는 두 수가 다를 때만 제로 플래그가 설정됩니다.
+예를 들어 `0001 AND 0001`은 0이 아니지만, `0001 AND 0010`은 0입니다.
+
+따라서 `upKey`에서 현재 방향이 아래쪽(4)이면 비트 검사에 따른 제로 플래그는 0이 됩니다.
+`BNE`는 "제로 플래그가 해제되어 있으면 분기"를 뜻하므로,
+이 경우에는 `illegalMove`로 분기해 서브루틴에서 바로 돌아옵니다.
+그렇지 않으면 새 방향(이 경우 1)을 해당 메모리 위치에 저장합니다.
+
+
+#### 게임 상태 갱신 ####
+
+다음 서브루틴인 `checkCollision`은 `checkAppleCollision`과 `checkSnakeCollision`에 작업을 맡깁니다.
+`checkAppleCollision`은 사과의 위치를 담은 두 바이트와 머리의 위치를 담은 두 바이트가 일치하는지 확인합니다.
+일치하면 뱀의 길이를 늘리고 사과의 새 위치를 생성합니다.
+
+`checkSnakeCollision`은 뱀의 몸통 마디들을 순회하면서 각 바이트 쌍을 머리의 바이트 쌍과 비교합니다.
+일치하는 것이 있으면 게임이 끝납니다.
+
+충돌을 검사한 뒤에는 뱀의 위치를 갱신합니다. 전체적인 순서는 다음과 같습니다.
+먼저 몸통의 각 바이트 쌍을 메모리에서 한 자리씩 옮깁니다.
+그다음 현재 방향에 따라 머리 위치를 갱신합니다.
+마지막으로 머리가 화면 밖으로 나갔다면 충돌로 처리합니다.
+아래 문자 그림으로 설명하겠습니다. 쉽게 이해할 수 있도록 각 대괄호에는 바이트 쌍 대신 x,y 좌표를 넣었습니다.
 
       0    1    2    3    4
-    Head                 Tail
+    머리                 꼬리
     
-    [1,5][1,4][1,3][1,2][2,2]    Starting position
+    [1,5][1,4][1,3][1,2][2,2]    시작 위치
 
-    [1,5][1,4][1,3][1,2][1,2]    Value of (3) is copied into (4)
+    [1,5][1,4][1,3][1,2][1,2]    (3)의 값을 (4)에 복사
     
-    [1,5][1,4][1,3][1,3][1,2]    Value of (2) is copied into (3)
+    [1,5][1,4][1,3][1,3][1,2]    (2)의 값을 (3)에 복사
     
-    [1,5][1,4][1,4][1,3][1,2]    Value of (1) is copied into (2)
+    [1,5][1,4][1,4][1,3][1,2]    (1)의 값을 (2)에 복사
     
-    [1,5][1,5][1,4][1,3][1,2]    Value of (0) is copied into (1)
+    [1,5][1,5][1,4][1,3][1,2]    (0)의 값을 (1)에 복사
     
-    [0,5][1,5][1,4][1,3][1,2]    Value of (0) is updated based on direction
+    [0,5][1,5][1,4][1,3][1,2]    방향에 따라 (0)의 값을 갱신
 
-At a low level, this subroutine is slightly more complex. First, the length is
-loaded into the `X` register, which is then decremented. The snippet below
-shows the starting memory for the snake.
+세부적으로 보면 이 서브루틴은 조금 더 복잡합니다.
+먼저 길이를 `X` 레지스터에 불러온 뒤 1을 감소시킵니다.
+아래는 뱀의 초기 메모리 상태입니다.
 
-    Memory location: $10 $11 $12 $13 $14 $15
+    메모리 위치:     $10 $11 $12 $13 $14 $15
 
-    Value:           $11 $04 $10 $04 $0f $04
+    값:              $11 $04 $10 $04 $0f $04
 
-The length is initialized to `4`, so `X` starts off as `3`. `LDA $10,x` loads the
-value of `$13` into `A`, then `STA $12,x` stores this value into `$15`. `X` is
-decremented, and we loop. Now `X` is `2`, so we load `$12` and store it into
-`$14`. This loops while `X` is positive (`BPL` means "branch if positive").
+길이는 `4`로 초기화되므로 `X`는 `3`으로 시작합니다.
+`LDA $10,x`는 `$13`의 값을 `A`에 불러오고, `STA $12,x`는 그 값을 `$15`에 저장합니다.
+`X`를 감소시키고 반복합니다. 이제 `X`는 `2`이므로 `$12`의 값을 불러와 `$14`에 저장합니다.
+`X`가 음수가 아닌 동안 반복합니다(`BPL`은 "양수이면 분기"라는 뜻입니다).
 
-Once the values have been shifted down the snake, we have to work out what to
-do with the head. The direction is first loaded into `A`. `LSR` means "logical
-shift right", or "shift all the bits one position to the right". The least
-significant bit is shifted into the carry flag, so if the accumulator is `1`,
-after `LSR` it is `0`, with the carry flag set.
+몸통을 따라 값을 옮긴 뒤에는 머리를 어떻게 움직일지 정해야 합니다.
+먼저 방향을 `A`에 불러옵니다. `LSR`은 "논리적 오른쪽 시프트",
+즉 "모든 비트를 오른쪽으로 한 자리 이동"한다는 뜻입니다.
+최하위 비트는 캐리 플래그로 옮겨지므로, 누산기가 `1`이었다면
+`LSR` 실행 후에는 `0`이 되고 캐리 플래그가 설정됩니다.
 
-To test whether the direction is `1`, `2`, `4` or `8`, the code continually
-shifts right until the carry is set. One `LSR` means "up", two means "right",
-and so on.
+방향이 `1`, `2`, `4`, `8` 중 무엇인지 알아내기 위해 캐리 플래그가 설정될 때까지 오른쪽 시프트를 반복합니다.
+`LSR` 한 번이면 "위", 두 번이면 "오른쪽"이며 나머지도 같은 방식입니다.
 
-The next bit updates the head of the snake depending on the direction. This is
-probably the most complicated part of the code, and it's all reliant on how
-memory locations map to the screen, so let's look at that in more detail.
+다음 부분에서는 방향에 따라 뱀의 머리를 갱신합니다.
+아마 코드에서 가장 복잡한 부분일 겁니다. 메모리 위치가 화면에 대응하는 방식에 전적으로 의존하므로,
+이를 좀 더 자세히 살펴봅시다.
 
-You can think of the screen as four horizontal strips of 32 &times; 8 pixels.
-These strips map to `$0200-$02ff`, `$0300-$03ff`, `$0400-$04ff` and `$0500-$05ff`.
-The first rows of pixels are `$0200-$021f`, `$0220-$023f`, `$0240-$025f`, etc.
+화면은 32 &times; 8픽셀 크기의 가로 띠 네 개로 생각할 수 있습니다.
+이 띠들은 각각 `$0200-$02ff`, `$0300-$03ff`, `$0400-$04ff`, `$0500-$05ff`에 대응합니다.
+맨 위부터 각 픽셀 행은 `$0200-$021f`, `$0220-$023f`, `$0240-$025f` 등입니다.
 
-As long as you're moving within one of these horizontal strips, things are
-simple. For example, to move right, just increment the least significant byte
-(e.g. `$0200` becomes `$0201`). To go down, add `$20` (e.g. `$0200` becomes
-`$0220`). Left and up are the reverse.
+같은 가로 띠 안에서 움직일 때는 간단합니다.
+예를 들어 오른쪽으로 이동하려면 하위 바이트를 증가시키면 됩니다(`$0200`이 `$0201`이 됩니다).
+아래로 이동하려면 `$20`을 더합니다(`$0200`이 `$0220`이 됩니다).
+왼쪽과 위쪽은 그 반대로 하면 됩니다.
 
-Going between sections is more complicated, as we have to take into account the
-most significant byte as well. For example, going down from `$02e1` should lead
-to `$0301`. Luckily, this is fairly easy to accomplish. Adding `$20` to `$e1`
-results in `$01` and sets the carry bit. If the carry bit was set, we know we
-also need to increment the most significant byte.
+띠 사이를 이동할 때는 상위 바이트도 고려해야 하므로 조금 더 복잡합니다.
+예를 들어 `$02e1`에서 아래로 이동하면 `$0301`이 되어야 합니다.
+다행히 구현은 꽤 간단합니다. `$e1`에 `$20`을 더하면 결과는 `$01`이 되고 캐리 비트가 설정됩니다.
+캐리 비트가 설정되었다면 상위 바이트도 증가시켜야 한다는 것을 알 수 있습니다.
 
-After a move in each direction, we also need to check to see if the head
-would become out of bounds. This is handled differently for each direction. For
-left and right, we can check to see if the head has effectively "wrapped
-around". Going right from `$021f` by incrementing the least significant byte
-would lead to `$0220`, but this is actually jumping from the last pixel of the
-first row to the first pixel of the second row. So, every time we move right,
-we need to check if the new least significant byte is a multiple of `$20`. This
-is done using a bit check against the mask `$1f`. Hopefully the illustration
-below will show you how masking out the lowest 5 bits reveals whether a number
-is a multiple of `$20` or not.
+각 방향으로 이동한 뒤에는 머리가 화면 밖으로 나갔는지도 확인해야 합니다.
+이는 방향마다 처리 방법이 다릅니다. 왼쪽과 오른쪽의 경우 머리 위치가 다음 줄이나 이전 줄로
+"넘어갔는지" 확인할 수 있습니다. `$021f`에서 하위 바이트를 증가시켜 오른쪽으로 이동하면
+`$0220`이 되지만, 실제로는 첫 번째 행의 마지막 픽셀에서 두 번째 행의 첫 픽셀로 넘어간 것입니다.
+따라서 오른쪽으로 이동할 때마다 새 하위 바이트가 `$20`의 배수인지 확인해야 합니다.
+이를 위해 마스크 `$1f`를 사용해 비트를 검사합니다.
+아래 그림을 보면 하위 5비트만 남기는 마스킹으로 어떤 수가 `$20`의 배수인지 알아내는 방법을 이해할 수 있을 겁니다.
 
     $20: 0010 0000
     $40: 0100 0000
@@ -783,28 +717,25 @@ is a multiple of `$20` or not.
 
     $1f: 0001 1111
 
-I won't explain in depth how each of the directions work, but the above
-explanation should give you enough to work it out with a bit of study.
+각 방향의 작동 방식을 모두 자세히 설명하지는 않겠습니다.
+위 설명을 바탕으로 조금 살펴보면 나머지도 이해할 수 있을 겁니다.
 
 
-#### Rendering the game ####
+#### 게임 화면 그리기 ####
 
-Because the game state is stored in terms of pixel locations, rendering the
-game is very straightforward. The first subroutine, `drawApple`, is extremely
-simple. It sets `Y` to zero, loads a random colour into the accumulator, then
-stores this value into `($00),y`. `$00` is where the location of the apple is
-stored, so `($00),y` dereferences to this memory location. Read the "Indirect
-indexed" section in [Addressing modes](#addressing) for more details.
+게임 상태를 픽셀 위치로 저장하므로 화면을 그리는 작업은 아주 간단합니다.
+첫 번째 서브루틴인 `drawApple`은 특히 간단합니다.
+`Y`를 0으로 설정하고, 무작위 색을 누산기에 불러온 다음, 그 값을 `($00),y`에 저장합니다.
+`$00`에는 사과의 위치가 저장되어 있으므로 `($00),y`를 역참조하면 해당 메모리 위치를 가리킵니다.
+자세한 내용은 [주소 지정 방식](#addressing)의 "간접 인덱스 주소 지정" 절을 참고하세요.
 
-Next comes `drawSnake`. This is pretty simple too - we first undraw the tail
-and then draw the head. `X` is set to the length of the snake, so we can index
-to the right pixel, and we set `A` to zero then perform the write using the
-indexed indirect addressing mode. Then we reload `X` to index to the head, set
-`A` to one and store it at `($10,x)`. `$10` stores the two-byte location of
-the head, so this draws a white pixel at the current head position. As only
-the head and the tail of the snake move, this is enough to keep the snake
-moving.
+다음은 `drawSnake`입니다. 이것도 꽤 간단합니다. 먼저 꼬리를 지우고 머리를 그립니다.
+원하는 픽셀을 인덱스로 가리킬 수 있도록 `X`를 뱀의 길이로 설정합니다.
+그리고 `A`를 0으로 설정한 뒤 인덱스 간접 주소 지정 방식으로 값을 씁니다.
+그다음 머리를 가리키도록 `X`를 다시 설정하고, `A`를 1로 설정해 `($10,x)`에 저장합니다.
+`$10`에는 머리의 2바이트 주소가 저장되어 있으므로 현재 머리 위치에 흰색 픽셀이 그려집니다.
+뱀의 머리와 꼬리만 바꾸면 되므로, 이것만으로 뱀이 계속 움직이게 할 수 있습니다.
 
-The last subroutine, `spinWheels`, is just there because the game would run too
-fast otherwise. All `spinWheels` does is count `X` down from zero until it hits
-zero again. The first `dex` wraps, making `X` `#$ff`.
+마지막 서브루틴인 `spinWheels`는 게임이 너무 빨리 실행되는 것을 막기 위해 있습니다.
+`spinWheels`가 하는 일은 `X`를 0부터 계속 감소시켜 다시 0이 될 때까지 세는 것뿐입니다.
+첫 번째 `dex`에서 값이 한 바퀴 돌아 `X`는 `#$ff`가 됩니다.
